@@ -1,6 +1,26 @@
-FROM psimonov/birt-viewer
+FROM tomcat:7.0
+MAINTAINER XMars (xtruongptit@gmail.com)
+
+SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
+
+RUN apt-get update && apt-get install unzip -y
+ENV TEMP_FOLDER=/tmp/birt
+RUN mkdir -p $TEMP_FOLDER
+WORKDIR $TEMP_FOLDER
+
+RUN wget -O birt-runtime-4.5.0-20150609.zip https://archive.eclipse.org/birt/downloads/drops/R-R1-4_5_0-201506092134/birt-runtime-4.5.0-20150609.zip \
+    && unzip -q birt-runtime-4.5.0-20150609.zip
+
+RUN mv birt-runtime-4_5_0/WebViewerExample $CATALINA_HOME/webapps.dist/birt
+RUN rm -rf $TEMP_FOLDER
 
 WORKDIR $CATALINA_HOME
+RUN rm -rf webapps
+RUN mv webapps.dist webapps
+
+COPY ./tomcat-users.xml $CATALINA_HOME/conf/tomcat-users.xml
+COPY ./context.xml $CATALINA_HOME/webapps/manager/META-INF/context.xml
+
 RUN mkdir -p webapps/birt/templates
 ENV REPORT_TEMPLATES_DIR="$CATALINA_HOME/webapps/birt/templates"
 VOLUME $REPORT_TEMPLATES_DIR
