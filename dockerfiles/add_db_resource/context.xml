@@ -1,2 +1,2 @@
 
-    <ResourceLink name="jdbc/postgres_resource" global="jdbc/postgres_resource" type="javax.sql.DataSource"/>
+    <ResourceLink name="jdbc/postgres" global="jdbc/postgres" type="javax.sql.DataSource"/>

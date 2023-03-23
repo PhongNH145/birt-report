@@ -1,12 +1,12 @@
 
-    <Resource name="jdbc/postgres_resource"
+    <Resource name="jdbc/postgres"
               username="${DB_USER}"
               password="${DB_PASSWORD}"
               url="jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}"
               auth="Container"
               driverClassName="org.postgresql.Driver"
               type="javax.sql.DataSource"
-              maxActive="100"
+              maxTotal="100"
               maxIdle="30"
-              maxWait="10000"
+              maxWaitMillis="-1"
     />

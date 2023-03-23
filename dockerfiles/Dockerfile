@@ -1,4 +1,4 @@
-FROM tomcat:7.0
+FROM tomcat:9.0
 MAINTAINER XMars (xtruongptit@gmail.com)
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
@@ -30,3 +30,5 @@ COPY ./context.xml $CATALINA_HOME/webapps/manager/META-INF/context.xml
 RUN mkdir -p webapps/birt/templates
 ENV REPORT_TEMPLATES_DIR="$CATALINA_HOME/webapps/birt/templates"
 VOLUME $REPORT_TEMPLATES_DIR
+
+CMD ["catalina.sh", "run", "-DDB_HOST=${DB_HOST}", "-DDB_PORT=${DB_PORT}", "-DDB_NAME=${DB_NAME}", "-DDB_USER=${DB_USER}",  "-DDB_PASSWORD=${DB_PASSWORD}"]
