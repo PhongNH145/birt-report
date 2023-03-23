@@ -1,0 +1,12 @@
+
+    <Resource name="jdbc/postgres_resource"
+              username="${DB_USER}"
+              password="${DB_PASSWORD}"
+              url="jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}"
+              auth="Container"
+              driverClassName="org.postgresql.Driver"
+              type="javax.sql.DataSource"
+              maxActive="100"
+              maxIdle="30"
+              maxWait="10000"
+    />
