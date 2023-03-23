@@ -3,11 +3,6 @@
 server_conf="$CATALINA_HOME/conf/server.xml"
 context_conf="$CATALINA_HOME/conf/context.xml"
 web_conf="$CATALINA_HOME/conf/web.xml"
-#additional_server_conf=$(readlink -f "./server.xml")
-
-#line_num=$(grep -n '</GlobalNamingResources>' "$server_conf" | cut -d: -f1)
-#((line_num = line_num - 1))
-#sed -i "${line_num}r ${additional_server_conf}" $server_conf
 
 function insert_more_content {
   regex_content=$1
