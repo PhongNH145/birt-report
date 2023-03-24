@@ -1,8 +1,6 @@
 FROM tomcat:9.0
 MAINTAINER XMars (xtruongptit@gmail.com)
 
-SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
-
 RUN apt-get update && apt-get install unzip nano -y
 ENV TEMP_FOLDER=/tmp/birt
 RUN mkdir -p $TEMP_FOLDER
@@ -30,3 +28,13 @@ COPY ./context.xml $CATALINA_HOME/webapps/manager/META-INF/context.xml
 RUN mkdir -p webapps/birt/templates
 ENV REPORT_TEMPLATES_DIR="$CATALINA_HOME/webapps/birt/templates"
 VOLUME $REPORT_TEMPLATES_DIR
+
+WORKDIR $CATALINA_HOME
+COPY ./entrypoint.sh .
+COPY ./.java_opts_env .
+RUN chmod +x entrypoint.sh
+ENV ADDITION_JAVA_OPTS_ENV="$CATALINA_HOME/.java_opts_env"
+
+#SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
+
+ENTRYPOINT /bin/bash -xo pipefail -c ./entrypoint.sh "$ADDITION_JAVA_OPTS_ENV" catalina.sh run

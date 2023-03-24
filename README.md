@@ -8,3 +8,14 @@
   - [so_chi_tiet_cong_no.rptdesign](templates/so_chi_tiet_cong_no.rptdesign) : line 121->122
 + Template example with specific database source:
   - [so_chi_tiet_tien_vay_341.rptdesign](templates/so_chi_tiet_tien_vay_341.rptdesign): line 122->125
++ Docker commands
+```shell
+# Remove exited container
+docker rm -f $(docker ps --filter status=exited -q)
+
+# Docker removes dangling (<none> tag) image
+docker rmi $(sudo docker images -f "dangling=true" -q)
+
+# Display full content of all tag for container
+docker ps --no-trunc -a
+```
