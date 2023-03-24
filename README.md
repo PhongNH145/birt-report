@@ -13,6 +13,9 @@
 # Prune every unused docker objects
 docker system prune --volumes -f
 
+# Remove dangling volumes
+docker volume rm -f $(docker volume ls -f dangling=true)
+
 # Remove exited container
 docker rm -f $(docker ps --filter status=exited -q)
 
