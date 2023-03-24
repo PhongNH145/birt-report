@@ -1,6 +1,18 @@
 # About
 + Birt version: 4.5.0
-+ Tomcat version: 8.0.23
++ Tomcat version: 9.0.73
+
+# Instruction
++ Add db source:
+  + create file **.env** contain
+  ```pycon
+  DB_HOST=localhost
+  DB_PORT=5432
+  DB_USER=odoo
+  DB_PASSWORD=odoo
+  DB_NAME=odoo
+  ```
+  + run image with mapping volume: .env:/usr/local/tomcat/.java_opts_env 
 
 # Reference
 + [Docker image](https://hub.docker.com/r/xmars/birt-report/tags)
