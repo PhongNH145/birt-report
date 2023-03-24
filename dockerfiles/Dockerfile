@@ -35,6 +35,4 @@ COPY ./.java_opts_env .
 RUN chmod +x entrypoint.sh
 ENV ADDITION_JAVA_OPTS_ENV="$CATALINA_HOME/.java_opts_env"
 
-#SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
-
-ENTRYPOINT /bin/bash -xo pipefail -c ./entrypoint.sh "$ADDITION_JAVA_OPTS_ENV" catalina.sh run
+ENTRYPOINT ./entrypoint.sh "$ADDITION_JAVA_OPTS_ENV" catalina.sh run

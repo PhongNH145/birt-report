@@ -10,6 +10,9 @@
   - [so_chi_tiet_tien_vay_341.rptdesign](templates/so_chi_tiet_tien_vay_341.rptdesign): line 122->125
 + Docker commands
 ```shell
+# Prune every unused docker objects
+docker system prune --volumes -f
+
 # Remove exited container
 docker rm -f $(docker ps --filter status=exited -q)
 
@@ -19,3 +22,4 @@ docker rmi $(sudo docker images -f "dangling=true" -q)
 # Display full content of all tag for container
 docker ps --no-trunc -a
 ```
++ [How to create Dockerfile with cmd and entrypoint by bash script](https://docs.docker.com/engine/reference/builder/#entrypoint)
