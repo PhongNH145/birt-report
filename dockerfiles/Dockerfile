@@ -1,14 +1,19 @@
 FROM tomcat:9.0
 MAINTAINER XMars (xtruongptit@gmail.com)
 
-RUN apt-get update && apt-get install unzip nano -y
+RUN apt-get update  \
+    && apt-get install unzip nano -y \
+    && apt-get install ttf-mscorefonts-installer -y \
+    && mv /usr/share/fonts/truetype/msttcorefonts/* /usr/share/fonts/truetype/
+
 ENV TEMP_FOLDER=/tmp/birt
 RUN mkdir -p $TEMP_FOLDER
 WORKDIR $TEMP_FOLDER
 
-RUN wget -O birt-runtime-4.13.0-20230302.zip https://mirror.umd.edu/eclipse/birt/downloads/drops/R-R1-4.13.0-202303022006/birt-runtime-4.13.0-20230302.zip \
+RUN wget -O birt-runtime-4.13.0-20230302.zip https://mirrors.jevincanders.net/eclipse/birt/downloads/drops/R-R1-4.13.0-202303022006/birt-runtime-4.13.0-20230302.zip \
     && unzip -q birt-runtime-4.13.0-20230302.zip \
     && wget -O postgresql-42.5.4.jar https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
+
 
 RUN mv WebViewerExample $CATALINA_HOME/webapps.dist/birt
 RUN mv postgresql-42.5.4.jar $CATALINA_HOME/lib
