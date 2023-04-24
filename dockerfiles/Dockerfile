@@ -3,7 +3,7 @@ MAINTAINER XMars (xtruongptit@gmail.com)
 
 RUN apt-get update  \
     && apt-get install unzip nano -y \
-    && apt-get install ttf-mscorefonts-installer -y \
+    && printf %s $'\nyes\n' | apt-get install ttf-mscorefonts-installer -y \
     && mv /usr/share/fonts/truetype/msttcorefonts/* /usr/share/fonts/truetype/
 
 ENV TEMP_FOLDER=/tmp/birt
