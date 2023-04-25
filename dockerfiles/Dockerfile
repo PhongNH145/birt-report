@@ -3,14 +3,15 @@ MAINTAINER XMars (xtruongptit@gmail.com)
 
 RUN apt-get update  \
     && apt-get install unzip nano -y \
-    && printf %s $'\nyes\n' | apt-get install ttf-mscorefonts-installer -y \
+    && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
+    && apt-get -y install ttf-mscorefonts-installer \
     && mv /usr/share/fonts/truetype/msttcorefonts/* /usr/share/fonts/truetype/
 
 ENV TEMP_FOLDER=/tmp/birt
 RUN mkdir -p $TEMP_FOLDER
 WORKDIR $TEMP_FOLDER
 
-RUN wget -O birt-runtime-4.13.0-20230302.zip https://mirrors.jevincanders.net/eclipse/birt/downloads/drops/R-R1-4.13.0-202303022006/birt-runtime-4.13.0-20230302.zip \
+RUN wget -O birt-runtime-4.13.0-20230302.zip https://ftp.jaist.ac.jp/pub/eclipse/birt/downloads/drops/R-R1-4.13.0-202303022006/birt-runtime-4.13.0-20230302.zip \
     && unzip -q birt-runtime-4.13.0-20230302.zip \
     && wget -O postgresql-42.5.4.jar https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
 
