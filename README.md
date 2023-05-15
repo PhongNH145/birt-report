@@ -15,6 +15,7 @@
   + run image with mapping volume: .env:/usr/local/tomcat/.java_opts_env 
 
 # Reference
++ [Config database source for template](https://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html)
 + [Docker image](https://hub.docker.com/r/xmars/birt-report/tags)
 + Template example with global JNDI source:
   - [so_chi_tiet_cong_no.rptdesign](templates/so_chi_tiet_cong_no.rptdesign) : line 121->122
