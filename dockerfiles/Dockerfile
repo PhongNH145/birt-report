@@ -1,10 +1,9 @@
 FROM tomcat:9.0
-MAINTAINER XMars (xtruongptit@gmail.com)
 
 RUN apt-get update  \
-    && apt-get install unzip nano -y \
+    && apt-get install unzip nano -y  --no-install-recommends \
     && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections \
-    && apt-get -y install ttf-mscorefonts-installer \
+    && apt-get install ttf-mscorefonts-installer -y --no-install-recommends \
     && mv /usr/share/fonts/truetype/msttcorefonts/* /usr/share/fonts/truetype/
 
 ENV TEMP_FOLDER=/tmp/birt
