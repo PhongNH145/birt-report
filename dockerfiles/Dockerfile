@@ -10,13 +10,13 @@ ENV TEMP_FOLDER=/tmp/birt
 RUN mkdir -p $TEMP_FOLDER
 WORKDIR $TEMP_FOLDER
 
-RUN wget -O birt-runtime-4.13.0-20230302.zip https://ftp.jaist.ac.jp/pub/eclipse/birt/downloads/drops/R-R1-4.13.0-202303022006/birt-runtime-4.13.0-20230302.zip \
-    && unzip -q birt-runtime-4.13.0-20230302.zip \
-    && wget -O postgresql-42.5.4.jar https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
+RUN wget -O birt-runtime-4.15.0-202403270652.zip https://mirror.kakao.com/eclipse/birt/updates/release/4.15.0/downloads/birt-runtime-4.15.0-202403270652.zip \
+    && unzip -q birt-runtime-4.15.0-202403270652.zip \
+    && wget -O postgresql-42.7.3.jar https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
 
 
 RUN mv WebViewerExample $CATALINA_HOME/webapps.dist/birt
-RUN mv postgresql-42.5.4.jar $CATALINA_HOME/lib
+RUN mv postgresql-42.7.3.jar $CATALINA_HOME/lib
 
 COPY ./add_db_resource/* .
 RUN chmod +x run.sh && ./run.sh

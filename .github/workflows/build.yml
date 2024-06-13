@@ -4,7 +4,7 @@ on:
         paths:
             - "dockerfiles/**"
 env:
-    image_tag: xmars/birt-report:4.13.0
+    image_tag: xmars/birt-report:4.15.0
 
 jobs:
     build:
